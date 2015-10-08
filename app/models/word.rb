@@ -9,9 +9,7 @@ class Word
   end
 
   def select
-    # binding.pry
-    puts self.class.all[rand(self.class.all.size)]
+    self.class.all[rand(self.class.all.size)]
   end
 
 end
-  Word.new.select
