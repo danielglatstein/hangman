@@ -14,8 +14,6 @@ class Letters
   end
 
   def blank
-    print Array.new(prepare.length, "_")
+    Array.new(prepare.length, "_")
   end
 end
-
-puts Letters.new.all
