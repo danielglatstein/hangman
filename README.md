@@ -2,15 +2,10 @@
 
 # Ruby Final Project - A Command Line Interface Program
 
-Now that you know how to write some pretty advanced ruby, scrape websites, and output to and recieve input from the command line, you're going to make your first project from scratch. You can do whatever you want when making this project, just make sure you do a few of the following:
+Now that you know how to write some pretty advanced ruby, scrape websites, and output to and recieve input from the command line, you're going to make your first project from scratch. You'll be choosing from a list of projects that will:
 
-* Scrape a website or use an API (optional. Talk to an instructor)
 * Make your application interactive (take user input and display some output)
 * Use good object oriented principles 
-
-As an example of a project like this, a past student scraped a website that had a list of [ASCII pokemon](http://ascii.co.uk/art/pokemon) and let users type the name of the pokemon they wanted to see. The program then output an ASCII image of the Pokemon the user requested.
-
-When you're done, package your app as a Gem and make it available on RubyGems! 
 
 Be creative and talk to an instructor about your project before you get started. You can do basically whatever you want as long as your project is manageable and an instructor approves it. 
 
@@ -27,6 +22,8 @@ You'll need to build this project from scratch, but your project should have a g
 │   └── run
 ├── lib
 │   └── model.rb
+|__ controllers
+|.. └── application_controller.rb
 ├── config
 │   └── environment.rb
 └── spec
@@ -52,22 +49,9 @@ If your app is something non progammers would use, make sure your readme has a s
 ### `LICENSE`
 Github will have a bunch of [options for licences](http://choosealicense.com). Pick one you like. 
 
-## Ideas
-
-Since you can build anything you want for this project, you should be creative. the best projects are the ones where you build something usefull to yourself, so think about something that you'd like as a tool or something that you'd use. Be good to yourself: this should be a challenging yet realistic learning opportunity and something that you're excited about. Don't just build something you already know how you'll build. 
-
-You could:
-* Turn a choose your own adventure book into a CLI game
-* Create a utility your computer doesn't have
-* Do something else. 
-
 ## Timeframe
 
-This project should take you a day or two to complete. 
-
-## Deploying
-
-Remember to publish your app to your github account and to [RubyGems](https://rubygems.org)
+We should wrap this project up on Monday afternoon.
 
 ## Bonus
 
