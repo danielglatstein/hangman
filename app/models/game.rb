@@ -52,5 +52,5 @@ class Game
       remove_letter
     end
   end
+  
 end
-puts Game.new.valid?('z')
