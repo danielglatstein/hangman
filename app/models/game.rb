@@ -9,6 +9,9 @@ class Board
     @word = Word.answer.split('')
     @letters = Letters.new
     @blanks = Array.new(Word.answer.length, "_")
+    #how do we make blanks work for word.answer that is two words
+    #like ["n","e","w","," ","j","e","r","s","e","y"]
+    #so the " " doesnt get a blank put in its space
   end
 
   def wrong_guess(letter)
@@ -19,7 +22,7 @@ class Board
     end
   end
 
-  def accept_letter(letter)
+  def accept(letter)
     #this method takes the selected letter and adds it to the hangman
     if valid? && word.include?(letter)
       reveal
