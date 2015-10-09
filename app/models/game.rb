@@ -6,7 +6,7 @@ class Board
   attr_reader :word, :letters, :blanks
   
   def initialize
-    @word = Word.answer.split(' ')
+    @word = Word.answer.split('')
     @letters = Letters.new
     @blanks = Array.new(Word.answer.length, "_")
   end
@@ -28,10 +28,10 @@ class Board
 
   def reveal(letter)
     correct = []
-    count = 0
-    word.each do |letter_index|
-      correct << count if letter_index == letter
-      count += 1
+    word.each_index.select do |i| 
+      if word[i] == letter
+        correct << i
+      end
     end
     correct.each do |i|
       blanks[i] = letter
