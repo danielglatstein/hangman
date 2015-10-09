@@ -1,6 +1,6 @@
 require 'pry'
-require_relative 'word.rb'
-require_relative 'letters.rb'
+require_relative '../../config/environment.rb'
+
 class Letters
   attr_accessor :wrong, :word
 

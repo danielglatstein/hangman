@@ -1,12 +1,13 @@
 require 'pry'
 require_relative 'letters.rb'
 require_relative 'word.rb'
+require_relative 'board.rb'
 
-class Game
+class Runner
   attr_accessor :word, :letters
 
-  def order(letter)
-    letter_input = gets.chomp
+  def order
+    letter = gets.chomp
     valid?
     if false
       reject_letter

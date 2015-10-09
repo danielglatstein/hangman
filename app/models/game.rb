@@ -1,6 +1,7 @@
 require 'pry'
+require_relative '../../config/environment.rb'
 
-class Board
+class Game
   #this is gonna be the picture
   #it will have to update after every input
   attr_reader :word, :letters, :blanks

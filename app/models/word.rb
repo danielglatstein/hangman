@@ -1,17 +1,12 @@
-require 'pry'
-require 'json'
-
-require_relative 'letters.rb'
-require_relative 'game.rb'
-#require_relative '../db/.wordlist.json'
+require_relative '../../config/environment.rb'
 
 class Word
 
-  #wordlist = File.read('../.db/wordlist.json')
-  @@bank = JSON.parse(wordlist)
+  wordlist = File.read('../../db/wordlist.json')
+  @@bank = JSON.parse(wordlist).values.flatten
   
   def self.all
-    puts @@bank.values
+    @@bank
   end
 
   def self.answer
@@ -20,4 +15,4 @@ class Word
 
 end
 
-Word.new.self.all
+puts Word.answer
