@@ -1,7 +1,5 @@
 require 'pry'
-require_relative 'letters.rb'
-require_relative 'word.rb'
-require_relative 'board.rb'
+require_relative '../../config/environment.rb'
 
 class Runner
   attr_accessor :word, :letters

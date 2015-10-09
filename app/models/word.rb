@@ -14,5 +14,3 @@ class Word
   end
 
 end
-
-puts Word.answer
