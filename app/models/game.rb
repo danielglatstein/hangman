@@ -12,11 +12,10 @@ class Game
   end
 
   def wrong_guess(letter)
-    #take wrong input and add it to the wrong array
-    #this pushes the incorrect guess into letters.wrong
     if valid(letter) && !word.include?(letter)
       letters.wrong << letter
     end
+    puts letters.wrong
   end
 
   def accept(letter)
@@ -28,9 +27,9 @@ class Game
 
   def round(letter)
     if accept(letter)
-      accept(letter)
+      print accept(letter)
     else
-      wrong_guess
+      wrong_guess(letter)
     end
   end
 
@@ -43,9 +42,9 @@ class Game
       end
     end
     correct.each do |i|
-      blanks[i] = letter
+      self.blanks[i] = letter
     end
-    blanks
+    self.blanks
   end
 
   def valid(letter)

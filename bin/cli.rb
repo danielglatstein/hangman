@@ -51,13 +51,13 @@ def incorrect_letter
 end
 
 def game_over
- "Sorry.  GAME OVER!  The correct word was #{} \n
+ puts "Sorry.  GAME OVER!  The correct word was #{Game.word.join} \n
  To play again, please press 'play'. To exit, press 'exit'."
  input = gets.chomp
 end
 
 def win_message
- "Congratulations!  You win!  To play again, please press  \n
+ puts "Congratulations!  You win!  To play again, please press  \n
  'play'. To exit, press 'exit'."
 end
 
@@ -69,19 +69,24 @@ def order_of_operations
  game = Game.new
  greeting
  rules
+ print game.word
  #show board
+ x = nil
  while !game.loss  
  #user picks letter
  first_input = ask_for_input
-    if  first_input == 'help'
+    if first_input == 'help'
       rules
+    elsif first_input == game.word.join
+      win_message
     elsif !game.valid(first_input)
       invalid_error
     elsif game.valid(first_input)
       game.round(first_input)
-      binding.pry
-
-    end
+    elsif game.loss
+      puts "Sorry.  GAME OVER!  The correct word was #{ame.word.join} \n
+      To play again, please press 'play'. To exit, press 'exit'."
+    end 
  end
  ask_for_input
    #if invalid game.!valid?(input)
