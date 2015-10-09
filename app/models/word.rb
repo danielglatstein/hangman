@@ -1,4 +1,6 @@
 require 'pry'
+require_relative 'letters.rb'
+require_relative 'game.rb'
 
 class Word
 
@@ -8,8 +10,8 @@ class Word
     @@bank
   end
 
-  def select
-    self.class.all[rand(self.class.all.size)]
+  def self.answer
+    self.all.sample
   end
 
 end
