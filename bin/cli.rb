@@ -19,12 +19,15 @@ def rules
  - It will take 7 guesses to fill the Hangman \n
  - At any time, you can guess the word \n
  - If the word is incorrect, THE GAME IS OVER\n
- - If you guess correctly, you win\n\n"
+ - If you guess correctly, you win\n
+  Please choose a letter or guess a word.  If you want \n
+  to see the rules, press 'help'.\n"
 end
 
 def ask_for_input
  puts "Please choose a letter or guess a word.  If you want \n
        to see the rules, press 'help'."
+input = gets.chomp 
 end
 
 def invalid_error
@@ -32,6 +35,8 @@ def invalid_error
  input = gets.chomp
  if input == "help"
   rules
+else
+  input
  end
 end
 
@@ -65,18 +70,20 @@ def order_of_operations
  greeting
  rules
  #show board
- ask_for_input
- input = gets.chomp
  while !game.loss  
  #user picks letter
-    if  input == 'help'
-      return rules
-    elsif !game.valid?(input)
+ first_input = ask_for_input
+    if  first_input == 'help'
+      rules
+    elsif !game.valid(first_input)
       invalid_error
-    elsif game.valid?(input)
-      ask_for_input
+    elsif game.valid(first_input)
+      game.round(first_input)
+      binding.pry
+
     end
  end
+ ask_for_input
    #if invalid game.!valid?(input)
   # ask_for_input
    #if valid

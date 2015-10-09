@@ -14,17 +14,26 @@ class Game
   def wrong_guess(letter)
     #take wrong input and add it to the wrong array
     #this pushes the incorrect guess into letters.wrong
-    if valid? && !word.include?(letter)
+    if valid(letter) && !word.include?(letter)
       letters.wrong << letter
     end
   end
 
   def accept(letter)
     #this method takes the selected letter and adds it to the hangman
-    if valid? && word.include?(letter)
-      reveal
+    if valid(letter) && word.include?(letter)
+      reveal(letter)
     end
   end
+
+  def round(letter)
+    if accept(letter)
+      accept(letter)
+    else
+      wrong_guess
+    end
+  end
+
 
   def reveal(letter)
     correct = []
@@ -39,7 +48,7 @@ class Game
     blanks
   end
 
-  def valid?(letter)
+  def valid(letter)
     if letter.length == 1 && !letters.wrong.include?(letter) #&& !letters.correct.include?(letter) 
       return true
     else
@@ -55,3 +64,4 @@ class Game
     letters.wrong.length == 6
   end
 end
+
