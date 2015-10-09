@@ -1,4 +1,3 @@
-require 'pry'
 require_relative '../../config/environment.rb'
 
 class Letters
@@ -15,4 +14,5 @@ class Letters
   def blank
     Array.new(prepare.length, "_")
   end
+
 end

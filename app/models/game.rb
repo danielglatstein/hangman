@@ -1,4 +1,3 @@
-require 'pry'
 require_relative '../../config/environment.rb'
 
 class Game
@@ -41,7 +40,7 @@ class Game
   end
 
   def valid?(letter)
-    if the letter.length == 1 && !letters.wrong.include?(letter) && !letters.correct.include?(letter)
+    if letter.length == 1 && !letters.wrong.include?(letter) #&& !letters.correct.include?(letter) 
       return true
     else
       return false
@@ -53,6 +52,6 @@ class Game
   end
 
   def loss
-    letters.wrong.length == 5
+    letters.wrong.length == 6
   end
 end
