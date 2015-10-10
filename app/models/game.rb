@@ -8,14 +8,15 @@ class Game
   def initialize
     @word = Word.answer.split('')
     @letters = Letters.new
-    @blanks = Array.new(Word.answer.length, "_")
+    @blanks = Array.new(word.length, "_")
+    #changed length of array
   end
 
   def wrong_guess(letter)
     if valid(letter) && !word.include?(letter)
       letters.wrong << letter
     end
-    puts letters.wrong
+    # puts letters.wrong
   end
 
   def accept(letter)
@@ -28,8 +29,9 @@ class Game
   def round(letter)
     if accept(letter)
       print accept(letter)
+      print wrong_guess(letter)
     else
-      wrong_guess(letter)
+      print "wrong letters: #{wrong_guess(letter)} \n \n"
     end
   end
 
