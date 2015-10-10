@@ -24,9 +24,13 @@ class GameController
   def letter_prompt
     puts "enter a letter"
   end
+  
+  def answer_prompt
+    puts "wu tang"
+  end
 
-  def invalid_error
-   puts "That is not a valid letter.  Please pick again."
+  def invalid_error(type)
+   puts "That is not a valid #{type}.  Please pick again."
   end
 
   def correct_letter

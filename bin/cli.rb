@@ -5,11 +5,11 @@ require_relative '../config/environment'
 x = nil
   
 controller = GameController.new
-new_game = Game.new
-word = new_game.word
+game = Game.new
+word = game.word
 
 while x != 'quit'
-  puts controller.greeting
+  puts "x"
   resource = gets.chomp
   
   case resource.downcase
@@ -17,19 +17,24 @@ while x != 'quit'
     controller.guess_prompt
     action = gets.chomp
     if action == 'letter'
+      #how do we keep it in this loop until
+      #the game is over or the player
+      #decides to try to answer
       controller.letter_prompt
       guess = gets.chomp
-        if !Game.valid(guess)
+        if !game.valid(guess)
           controller.invalid_error("letter")  
-        elsif Game.loss
+        elsif game.loss
           controller.game_over(word)
-        elsif Game.win
+        elsif game.win
           controller.win_message
         else
-          Game.round(guess)
+          game.round(guess)
+          puts game.blanks
         end
+    #binding.pry
     elsif action == 'answer'
-      game.answer_prompt
+      controller.answer_prompt
       guess = gets.chomp
         if guess == word.join
           controller.win_message
