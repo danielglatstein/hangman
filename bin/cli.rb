@@ -4,14 +4,22 @@ require_relative '../config/environment'
 
 # Game.new.call
 
-def greeting
- puts "Hello.  Welcome to Hangman!"
+def create_game
+  @game = Game.new
+end
+
+def instructions
+ puts "Hello.  Welcome to Hangman! Whats the name of action you would like to take?"
+ puts "'help' to see the rules"
+ puts "'play' to start the game"
 end
 
 def rules
  puts "These are the rules of Hangman: \n
  - A word is randomly selected by the computer \n
- - You will guess a letter \n
+ - You will choose your action \n
+ - 'help' to see the rules\n
+ - 'play' to start the game
  - If the letter is contained in the word, \n 
    it will be revealed on the board \n
  - If the letter is not contained in the word,\n
@@ -24,7 +32,7 @@ def rules
   to see the rules, press 'help'.\n"
 end
 
-def ask_for_input
+def guess_prompt
  puts "Please choose a letter or guess a word.  If you want \n
        to see the rules, press 'help'."
 input = gets.chomp 
@@ -50,10 +58,8 @@ def incorrect_letter
  input = gets.chomp
 end
 
-def game_over
- puts "Sorry.  GAME OVER!  The correct word was #{Game.word.join} \n
- To play again, please press 'play'. To exit, press 'exit'."
- input = gets.chomp
+def game_over(word)
+ puts "Sorry.  GAME OVER!  The correct word was #{word.join} \nTo play again, please press 'play'. To exit, press 'exit'."
 end
 
 def win_message
@@ -61,52 +67,44 @@ def win_message
  'play'. To exit, press 'exit'."
 end
 
+
+
 # def user_input
 #   input = gets.chomp
 # end
 
-def order_of_operations
- game = Game.new
- greeting
- rules
- print game.word
- #show board
- x = nil
- while !game.loss  
- #user picks letter
- first_input = ask_for_input
-    if first_input == 'help'
-      rules
-    elsif first_input == game.word.join
-      win_message
-    elsif !game.valid(first_input)
-      invalid_error
-    elsif game.valid(first_input)
-      game.round(first_input)
-    elsif game.loss
-      puts "Sorry.  GAME OVER!  The correct word was #{ame.word.join} \n
-      To play again, please press 'play'. To exit, press 'exit'."
-    end 
- end
- ask_for_input
-   #if invalid game.!valid?(input)
-  # ask_for_input
-   #if valid
-   # if letter correct game.correct(input)
-   #   put in board game.reveal(input)
-   #  correct_letter
-   #  ask_for_input
-   # if not correct 
-   #   put in wrong words
-   #  incorrect_letter
-   #show board
-   # if game.win == true
-  #   win_message
-   # while !game.loss is not true
-   #  game_over
-   #  greeting
-   # else
-   #  ask_for_input
-end
+x = nil
 
-order_of_operations
+while x != quit
+  greeting
+  resource = gets.chomp
+
+  case resource.downcase
+  when 'play'
+      game = GameController.new
+      word = game.word
+    game.rules
+    action = gets.chomp
+    if action == 'guess letter'
+      game.guess_prompt
+      guess = gets.chomp
+        if !game.valid(guess)
+          game.invalid_error   
+        elsif game.loss
+          game.game_over(word)
+        else
+          game.round(guess)
+        end
+    if action == 'guess answer'
+      game.answer_prompt
+      guess = gets.chomp
+        if guess == word.join
+          game.win_message
+        else game.loss
+          game.game_over(word)
+        end
+  when 'help'
+    game.rules
+  end
+ end
+ 
