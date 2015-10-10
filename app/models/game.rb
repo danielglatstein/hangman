@@ -1,16 +1,15 @@
 require_relative '../../config/environment.rb'
 
 class Game
-  attr_reader :word, :letters, :blanks
+  attr_reader :board
   
   def initialize
-    @word = Word.answer.split('')
-    @letters = Letters.new
-    @blanks = Array.new(Word.answer.length, "_")
+    @board = Board.new
+    game_loop
   end
 
   def wrong_guess(letter)
-    if valid(letter) && !word.include?(letter)
+    if valid(letter) && !board.word.include?(letter)
       letters.wrong << letter
     end
     puts letters.wrong
@@ -18,7 +17,7 @@ class Game
 
   def accept(letter)
     #this method takes the selected letter and adds it to the hangman
-    if valid(letter) && word.include?(letter)
+    if valid(letter) && board.word.include?(letter)
       reveal(letter)
     end
   end
@@ -31,18 +30,21 @@ class Game
     end
   end
 
+  def game_status(response)
+    if @player.lost?
+      @board.flash "Sorry, you lose! The answer was #{@board.phrase.show.upcase}"
+      return play_again?
+    elsif @player.won?
+      @board.flash "You win! Awesome!"
+      return play_again?
+    else
+      return true
+    end
+  end
+
 
   def reveal(letter)
-    correct = []
-    word.each_index.select do |i| 
-      if word[i] == letter
-        correct << i
-      end
-    end
-    correct.each do |i|
-      self.blanks[i] = letter
-    end
-    self.blanks
+    
   end
 
   def valid(letter)
@@ -54,7 +56,35 @@ class Game
   end
 
   def win
-    blanks == word
+    board.blanks == word
+  end
+
+  def pick_letter
+    puts "What letter would you like to guess?"
+    puts board.blanks
+    return gets.chomp.upcase
+  end
+
+  def check_letter(letter)
+    if !valid?
+      puts "invalid"
+      return false
+    end
+
+    if player.guess?(letter)
+      return "Correct"
+    else
+      return "wrong"
+    end
+  end
+
+  def game_loop
+    status = true
+    while (status)
+      letter = pick_letter
+      response = check_letter(letter)
+      status = game_status(response)
+    end
   end
 
   def loss

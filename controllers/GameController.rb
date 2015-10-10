@@ -1,6 +1,6 @@
 require_relative '../config/environment'
 class GameController
-  
+
   def greeting
    puts "These are the rules of Hangman: \n
    - A word is randomly selected by the computer \n
@@ -18,8 +18,8 @@ class GameController
   end
 
   def guess_prompt
-   puts "- enter 'guess letter' to guess a letter\n  
-         - enter 'guess word' to see the rules"
+   puts "\nenter 'start' to begin guessing\n  
+         enter 'answer' to guess the word\n"
   end
 
   def letter_prompt
