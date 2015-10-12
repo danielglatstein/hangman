@@ -57,19 +57,26 @@ class RunProgram
    'play'. To exit, press 'exit'. \n\n"
   end
 
+  def exit
+    puts "Game Over"
+  end
+
   def order_of_operations
   greeting
   rules
-    while true
+  exit = true
+    while exit
     @game = Game.new
     print "#{game.blanks} \n"
-      while true
+      while exit
       puts "\n"
       input = gets.chomp
         if input == 'help'
           rules
           ask_for_input
           print "#{game.blanks} \n"
+        elsif input == 'exit'
+          exit = false
         elsif input == 'play'
           ask_for_input
           break
