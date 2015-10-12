@@ -28,10 +28,9 @@ class Game
 
   def round(letter)
     if accept(letter)
-      print accept(letter)
-      print wrong_guess(letter)
+      print "#{accept(letter)} \n wrong letters: #{letters.wrong} \n \n"
     else
-      print "wrong letters: #{wrong_guess(letter)} \n \n"
+      print "#{reveal(letter)}\n wrong letters: #{wrong_guess(letter)} \n \n"
     end
   end
 
