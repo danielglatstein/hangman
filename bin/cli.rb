@@ -22,7 +22,7 @@ while x != 'quit'
         controller.letter_prompt
         letter_guess = gets.chomp
 
-          while !game.loss && !game.win
+          while !game.loss && !game.win && 
             if !game.valid(letter_guess)
               controller.invalid_error("letter")
             elsif letter_guess == 'answer'

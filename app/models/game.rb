@@ -5,14 +5,24 @@ class Game
   
   def initialize
     @board = Board.new
-    game_loop
+    create_player
+    play
+  end
+
+  def create_player
+    introduction
+    @player = Player.new(board)
+    puts "lets play"
+  end
+
+  def introduction
+    puts "Welcome to hangman!"
   end
 
   def wrong_guess(letter)
     if valid(letter) && !board.word.include?(letter)
       letters.wrong << letter
     end
-    puts letters.wrong
   end
 
   def accept(letter)
@@ -25,26 +35,41 @@ class Game
   def round(letter)
     if accept(letter)
       print accept(letter)
+      print wrong_guess(letter)
     else
-      wrong_guess(letter)
+      print "wrong letters: #{wrong_guess(letter)} \n \n"
     end
   end
 
   def game_status(response)
     if @player.lost?
-      @board.flash "Sorry, you lose! The answer was #{@board.phrase.show.upcase}"
+      @board.message "Sorry, you lose! The answer was #{@board.phrase.show.upcase}"
       return play_again?
     elsif @player.won?
-      @board.flash "You win! Awesome!"
+      @board.message "You win! Awesome!"
       return play_again?
     else
       return true
     end
   end
 
-
-  def reveal(letter)
-    
+  def play_again?
+    puts "Want to play again? [Y/N]"
+    while true
+      response = gets.chomp.upcase
+      case response
+        when "Y"
+          self.new
+          return true
+          break
+        when "N"
+          puts board.message("good bye")
+          return false
+          break
+        else
+          puts "Press 'Y' to play again or 'N' to quit."
+        end
+    end
   end
 
   def valid(letter)
@@ -56,7 +81,7 @@ class Game
   end
 
   def win
-    board.blanks == word
+    board.blanks == board.word
   end
 
   def pick_letter
@@ -78,7 +103,7 @@ class Game
     end
   end
 
-  def game_loop
+  def play
     status = true
     while (status)
       letter = pick_letter

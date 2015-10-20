@@ -1,16 +1,16 @@
 require_relative '../../config/environment.rb'
-
 class Word
+
+  def self.wordlist
    thing = File.absolute_path("db/wordlist.json")
    wordlist = File.read(thing)
-   @@bank = JSON.parse(wordlist).values.flatten
-
-  def self.all
-    @@bank
+   JSON.parse(wordlist).values.flatten
   end
 
   def self.answer
-    self.all.sample
+    binding.pry
+    self.wordlist.sample
   end
-
 end
+
+Word.answer
